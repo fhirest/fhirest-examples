@@ -1,0 +1,70 @@
+server:
+  port: 8181
+
+spring:
+  datasource:
+    store-app:
+      url: jdbc:postgresql://localhost:5190/fhirestdb
+      username: fhirest_app
+      password: test
+      maxActive: 10
+      driverClassName: org.postgresql.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+    store-admin:
+      url: jdbc:postgresql://localhost:5190/fhirestdb
+      username: fhirest_admin
+      password: test
+      maxActive: 1
+      driverClassName: org.postgresql.Driver
+      type: org.springframework.jdbc.datasource.SimpleDriverDataSource
+      liquibase:
+        change-log: 'classpath:changelog-store.xml'
+        parameters:
+          app-username: ${spring.datasource.store-app.username}
+    search-app:
+      url: jdbc:postgresql://localhost:5191/fhirestdb
+      username: fhirest_app
+      password: test
+      maxActive: 10
+      driverClassName: org.postgresql.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+    search-admin:
+      url: jdbc:postgresql://localhost:5191/fhirestdb
+      username: fhirest_admin
+      password: test
+      maxActive: 1
+      driverClassName: org.postgresql.Driver
+      type: org.springframework.jdbc.datasource.SimpleDriverDataSource
+      liquibase:
+        change-log: 'classpath:changelog-search.xml'
+        parameters:
+          app-username: ${spring.datasource.search-app.username}
+    patient-store-app:
+      url: jdbc:postgresql://localhost:5192/fhirestdb
+      username: fhirest_app
+      password: test
+      maxActive: 10
+      driverClassName: org.postgresql.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+    patient-store-admin:
+      url: jdbc:postgresql://localhost:5192/fhirestdb
+      username: fhirest_admin
+      password: test
+      maxActive: 1
+      driverClassName: org.postgresql.Driver
+      type: org.springframework.jdbc.datasource.SimpleDriverDataSource
+      liquibase:
+        change-log: 'classpath:changelog-store.xml'
+        parameters:
+          app-username: ${spring.datasource.patient-store-app.username}
+
+
+
+management:
+  endpoints:
+    web.exposure.include: health, prometheus, info
+    health.show-details: always
+
+fhirest.conformance.definitions-url: https://kexus.kodality.com/repository/store-public/kefhir/defs-r5.zip
+
+
