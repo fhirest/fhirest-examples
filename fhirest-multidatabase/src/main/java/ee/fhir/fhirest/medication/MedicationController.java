@@ -1,8 +1,8 @@
-package ee.tehik.fhirest.medication;
+package ee.fhir.fhirest.medication;
 
-import ee.tehik.fhirest.rest.BaseFhirResourceServer;
-import ee.tehik.fhirest.rest.model.FhirestRequest;
-import ee.tehik.fhirest.rest.model.FhirestResponse;
+import ee.fhir.fhirest.rest.BaseFhirResourceServer;
+import ee.fhir.fhirest.rest.model.FhirestRequest;
+import ee.fhir.fhirest.rest.model.FhirestResponse;
 import org.hl7.fhir.r5.model.CodeableConcept;
 import org.hl7.fhir.r5.model.Coding;
 import org.hl7.fhir.r5.model.Medication;

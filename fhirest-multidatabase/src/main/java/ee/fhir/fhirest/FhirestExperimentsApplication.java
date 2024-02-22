@@ -1,4 +1,4 @@
-package ee.tehik.fhirest;
+package ee.fhir.fhirest;
 
 
 import org.springframework.boot.SpringApplication;

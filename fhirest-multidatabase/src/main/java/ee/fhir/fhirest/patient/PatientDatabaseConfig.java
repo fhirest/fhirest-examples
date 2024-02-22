@@ -1,7 +1,7 @@
-package ee.tehik.fhirest.patient;
+package ee.fhir.fhirest.patient;
 
-import ee.tehik.fhirest.PgTransactionManager;
-import ee.tehik.fhirest.SpringLiquibaseBuilder;
+import ee.fhir.fhirest.PgTransactionManager;
+import ee.fhir.fhirest.SpringLiquibaseBuilder;
 import javax.sql.DataSource;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Qualifier;

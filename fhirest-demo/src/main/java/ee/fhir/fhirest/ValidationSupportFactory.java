@@ -1,6 +1,6 @@
-package ee.tehik.fhirest;
+package ee.fhir.fhirest;
 
-import ee.tehik.fhirest.core.api.conformance.HapiValidationSupportProvider;
+import ee.fhir.fhirest.core.api.conformance.HapiValidationSupportProvider;
 import org.hl7.fhir.common.hapi.validation.support.RemoteTerminologyServiceValidationSupport;
 import org.springframework.context.annotation.Configuration;
 
