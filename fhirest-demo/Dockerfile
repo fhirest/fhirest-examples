@@ -6,5 +6,5 @@ ENV APP_VERSION=${APP_VERSION:-latest}
 ARG BUILD_TIME
 ENV BUILD_TIME=$BUILD_TIME
 
-COPY build/libs/*-all.jar app.jar
+COPY build/libs/*[^plain].jar app.jar
 CMD java ${JAVA_OPTS} -jar app.jar
