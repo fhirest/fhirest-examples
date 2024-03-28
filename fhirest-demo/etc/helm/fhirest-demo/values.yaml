@@ -1,0 +1,62 @@
+image:
+  repository: ghcr.io/fhirest/fhirest-examples/fhirest-demo
+  pullPolicy: IfNotPresent
+  pullSecrets: [ ]
+  tag: ""
+
+
+config:
+  JAVA_OPTS: '-Xmx2800m'
+#  LOGGING_CONFIG: 'file:/logback.xml'
+
+#logbackXml: |+
+#  <configuration>
+#    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+#      <encoder>
+#        <pattern>%d [%thread] %-5level %logger{36} - %msg%n</pattern>
+#      </encoder>
+#    </appender>
+#
+#    <root level="trace">
+#      <appender-ref ref="STDOUT"/>
+#    </root>
+#  </configuration>
+
+postgres:
+  url: jdbc:postgresql://fhirest-pg-postgresql:5432/fhirestdb
+  dbPoolSize: "10"
+  admin:
+    user: fhirest_admin
+    password: test
+  app:
+    user: fhirest_app
+    password: test
+
+service:
+  type: ClusterIP
+  port: 8181
+  containerPort: 8181
+
+ingress:
+  className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 200M
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+  host: fhirest.local
+  path: /
+  pathType: Prefix
+  tls:
+#    - secretName: chart-example-tls
+#      hosts:
+#        - chart-example.local
+
+replicas: 1
+
+resources:
+  limits:
+    cpu: 2
+    memory: 3072Mi
+  requests:
+    cpu: 200m
+    memory: 512Mi
