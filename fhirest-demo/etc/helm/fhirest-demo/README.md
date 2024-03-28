@@ -14,7 +14,7 @@ helm install fhirest-pg oci://registry-1.docker.io/bitnamicharts/postgresql
 To install the chart with the release name `fhirest`:
 
 ```console
-$ helm install fhirest https://github.com/fhirest/fhirest-examples/raw/helm/fhirest-demo/etc/helm/fhirest-demo/fhirest-demo-1.0.0.tgz --set nameOverride=fhirest-demo-1
+$ helm install fhirest https://github.com/fhirest/fhirest-examples/raw/main/fhirest-demo/etc/helm/fhirest-demo/fhirest-demo-1.0.0.tgz
 ```
 
 These commands deploy FHIREST on the Kubernetes cluster in the default configuration. The [Parameters](#parameters) section lists the parameters that can be
@@ -40,14 +40,15 @@ $ helm delete --purge  fhirest
 
 ### FHIREST deployment parameters
 
-| Name                      | Description               | Value                                             |
-|---------------------------|---------------------------|---------------------------------------------------|
-| `image.repository`        | FHIREST backend image     | `"ghcr.io/fhirest/fhirest-examples/fhirest-demo"` |
-| `replicas`                | Number of replicas        | `1`                                               |
-| `fhirest.limits.cpu`      | CPU resource limit        | `2`                                               |
-| `fhirest.limits.memory`   | Memory resource limit     | `3072Mi`                                          |
-| `fhirest.requests.cpu`    | Requested CPU resource    | `200m`                                            |
-| `fhirest.requests.memory` | Requested memory resource | `512Mi`                                           |
+| Name                      | Description                    | Value                                             |
+|---------------------------|--------------------------------|---------------------------------------------------|
+| `image.repository`        | FHIREST backend image          | `"ghcr.io/fhirest/fhirest-examples/fhirest-demo"` |
+| `image.tag`               | FHIREST backend image  version | `"latest"`                                        |
+| `replicas`                | Number of replicas             | `1`                                               |
+| `fhirest.limits.cpu`      | CPU resource limit             | `2`                                               |
+| `fhirest.limits.memory`   | Memory resource limit          | `3072Mi`                                          |
+| `fhirest.requests.cpu`    | Requested CPU resource         | `200m`                                            |
+| `fhirest.requests.memory` | Requested memory resource      | `512Mi`                                           |
 
 ### FHIR parameters
 
