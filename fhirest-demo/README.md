@@ -15,7 +15,7 @@ EOSQL
 
 ### Run application:
 ```
-./gradlew run
+./gradlew bootRun
 ```
 Env variables:
 ```

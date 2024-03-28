@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "fhirest-demo.fullname" . }}
+  labels:
+    {{- include "fhirest-demo.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      {{- include "fhirest-demo.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "fhirest-demo.labels" . | nindent 8 }}
+    spec:
+      {{- if .Values.image.pullSecrets }}
+      imagePullSecrets: {{- range .Values.image.pullSecrets }}
+        - name: {{ . }}
+      {{- end }}
+      {{- end }}
+      volumes:
+        - configMap:
+            name: {{ include "fhirest-demo.fullname" . }}-logback-config
+          name: {{ include "fhirest-demo.fullname" . }}-logback-volume
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.repository}}:{{ .Values.image.tag | default .Chart.AppVersion}}
+          ports:
+            - containerPort: {{ .Values.service.containerPort }}
+          envFrom:
+            - secretRef:
+                name: {{ include "fhirest-demo.fullname" . }}-postgres-secret
+            - configMapRef:
+                name: {{ include "fhirest-demo.fullname" . }}-config
+          volumeMounts:
+            - mountPath: logback.xml
+              subPath: logback.xml
+              name: {{ include "fhirest-demo.fullname" . }}-logback-volume
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: {{ .Values.service.containerPort }}
+            initialDelaySeconds: 10
+            timeoutSeconds: 3
+            periodSeconds: 60
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: {{ .Values.service.containerPort }}
+            initialDelaySeconds: 10
+            timeoutSeconds: 3
+            periodSeconds: 60
+            failureThreshold: 5
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
