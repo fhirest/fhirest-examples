@@ -14,7 +14,7 @@ helm install fhirest-pg oci://registry-1.docker.io/bitnamicharts/postgresql
 To install the chart with the release name `fhirest`:
 
 ```console
-$ helm install fhirest https://github.com/fhirest/fhirest-examples/raw/main/fhirest-demo/etc/helm/fhirest-demo/fhirest-demo-1.0.0.tgz
+$ helm install fhirest https://github.com/fhirest/fhirest-examples/raw/master/fhirest-demo/etc/helm/fhirest-demo/fhirest-demo-1.0.0.tgz
 ```
 
 These commands deploy FHIREST on the Kubernetes cluster in the default configuration. The [Parameters](#parameters) section lists the parameters that can be
